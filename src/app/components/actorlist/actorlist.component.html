@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h3>List of Actors</h3>
+    <table class="table table-striped table-dark table-hover">
+      <thead>
+        <th>Name</th>
+        <th>City</th>
+        <th>Rating</th>
+        <th>Actions</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let actor of actorList; index as indx"
+            (dblclick)="editActor(indx)"
+            (keyup)="handleKey($event, indx)">
+          <td>
+            <span *ngIf="indx !== selectedIndex">
+              {{ actor.name }}
+            </span>
+            <span *ngIf="indx === selectedIndex">
+              <input type="text" [(ngModel)]="actor.name">
+            </span>
+          </td>
+          <td>
+            <span *ngIf="indx !== selectedIndex">
+              {{ actor.city }}
+            </span>
+            <span *ngIf="indx === selectedIndex">
+              <input type="text" [(ngModel)]="actor.city">
+            </span>
+          </td>
+          <td>
+            <span *ngIf="indx !== selectedIndex">
+              {{ actor.rating }}
+            </span>
+            <span *ngIf="indx === selectedIndex">
+              <input type="text" [(ngModel)]="actor.rating">
+            </span>
+          </td>
+          <td>
+            <span *ngIf="indx !== selectedIndex">
+              <button class="btn btn-primary" (click)="editActor(indx)">
+                <i class="fa fa-pencil"></i>
+              </button>
+              <button class="btn btn-danger" (click)="deleteActor(indx)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </span>
+            <span *ngIf="indx === selectedIndex">
+              <button class="btn btn-secondary" (click)="saveActor(indx)">
+                <i class="fa fa-save"></i>
+              </button>
+              <button class="btn btn-secondary" (click)="cancelEdit(indx)">
+                <i class="fa fa-undo"></i>
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <div>
+    Message: <input type="text" [(ngModel)]="message">
+    <p>
+      Your message is: {{ message }}
+    </p>
+  </div> -->
+  <div>
+    <h4>Add Actor Form</h4>
+    <p>
+      <label>
+        Name: <input type="text" [(ngModel)]="newName">
+      </label>
+    </p>
+    <p>
+      <label>
+        City: <input type="text" [(ngModel)]="newCity">
+      </label>
+    </p>
+    <p>
+      <label>
+        Rating: <input type="text" [(ngModel)]="newRating" (keypress)="checkKey($event)">
+      </label>
+    </p>
+    <button (click)="addActor()">Add</button>
+  </div>
+</div>

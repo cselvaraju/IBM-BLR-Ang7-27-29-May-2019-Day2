@@ -1,0 +1,22 @@
+<div>
+  <h3>Demo Component</h3>
+  The message is: {{ message }}
+  <div *ngIf="listFlag">
+    <h5>List of Vegetables</h5>
+    <ul>
+      <li *ngFor="let veg of vegetables; index as n">
+        <span *ngIf="veg.price > 25">
+          {{ n + 1 }} --
+          Name: {{ veg.name }}
+          Price: {{ veg.price }}
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <button (click)="btnClicked($event)">Click Me</button>
+    &nbsp;
+    <button (click)="toggleList()">{{ btnText }}</button>
+  </div>
+</div>
